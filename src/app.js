@@ -1,11 +1,34 @@
-import "bootstrap";
-import "./style.css";
+const pronombres = ["el", "mi"];
+const adjetivos = ["gran", "pequeño"];
+const sustantivos = ["perro", "codigo"];
+const extensiones = [",com", ".es"];
+
+let generador = false;
+
+const generadorDominios = () => {
+  if (!generador) {
+    let listaDominios = document.getElementById("dominios");
+
+    pronombres.forEach((pro) => {
+      adjetivos.forEach((adj) => {
+        sustantivos.forEach((sust) => {
+          extensiones.forEach((ext) => {
+            let dominio = `${pro}${adj}${sust}${ext}`;
+            let elementoLista = document.createElement('li');
+            elementoLista.textContent = dominio;
+            listaDominios.appendChild(elementoLista);
+          });
+        });
+      });
+    });
+
+    generado = true;
+  }
+};
 
 
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
-
-window.onload = function() {
-  //write your code here
-  console.log("Hello Rigo from the console!");
+window.onload = () => {
+  document.getElementById("generar-btn").addEventListener("click", () => {
+    generadorDominios();
+  });
 };
